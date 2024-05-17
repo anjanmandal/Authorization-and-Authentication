@@ -1,0 +1,3 @@
+------------------------------------NOTES AUTHENTICATION AND AUTHORIZATION----------------------------------------
+
+validator is the pacage in npm that validates the if the email is valid or not check the npm documentation...

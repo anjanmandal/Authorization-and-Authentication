@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="container mt-5">
+    <h1 class="mb-4">Welcome to the Home Page</h1>
+    <button id="viewUsersBtn" class="btn btn-secondary" onclick="getAllUsers()">View All Users</button>
+    <p id="message" class="mt-4"></p>
+  </div>
+
+  <script>
+    const token = "<%= token %>";
+
+    async function getAllUsers() {
+      if (token) {
+        const response = await fetch('/alluser', {
+          method: 'GET',
+          headers: {
+            'Authorization': `bearer ${token}`
+          }
+        });
+
+        if (response.ok) {
+          const message = await response.text();
+          document.getElementById('message').innerText = message;
+        } else {
+          document.getElementById('message').innerText = 'Failed to fetch users.';
+        }
+      } else {
+        document.getElementById('message').innerText = 'No token found. Please log in first.';
+      }
+    }
+  </script>
+</body>
+</html>
